@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wedding Invitation Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            #myPrntbtn {
+                display: none;
+            }
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+              
+            }
+
+            body {
+                margin: 1.6cm;
+          
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="topnav">
+            
+            <a class="active" href="#home">Logo</a>
+            <a href="#" class="split">Menu</a>
+        </div>
+    </nav>
+    <h2 style="text-align: center;">Wedding Invitation Designer</h2>
+    <button class="switchColor">Mode</button>
+  
+    <div class="container" style="height:560px;">
+        <div class="left-content" style="  border: 2px solid #a1a1d0; border-radius: 5px; padding: 25px;">
+            <form action="#" id="myForm">
+
+                <div class="row">
+                    <div class="col-25">
+                        <label id ="country">Select your design:</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="design_select" class="design_select" onchange="designSelectOnchage()"
+                            name="design_select">
+                            <option>----select----</option>
+                            <option value="design_one">Design One</option>
+                            <option value="design_two">Design Two</option>
+                            <option value="design_three">Design Three</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="first_name_bride">First name of bride:</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="first_name_bride" onkeyup="firstNameBride(this.value)"
+                            name="first_name_bride" placeholder="First name of bride">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label id ="lname">First name of groome:</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="first_name_groome" onkeyup="firstNameGroome(this.value)"
+                            name="first_name_groome" placeholder="First name of groome">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="message">Message:</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="message" name="message" onkeyup="getMessageValue(this.value)"
+                            placeholder="Message" style="height:150px"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="date">Date:</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="date" id="date" name="date" onchange="getDateInput(this.value)" >
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="venu_address">Venue Address:</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="venu_address" name="venu_address" onkeyup="getVenuAddress(this.value)"
+                            placeholder="Venue Address" style="height:100px"></textarea>
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <input type="reset" onclick="myFormReset()" value="Reset">
+                </div>
+            </form>
+        </div>
+
+        <div style="width: 6%;"></div>
+
+        <div class="right-content right_content_id" id="right_content_id"
+            style=" height: 560px;  border: 2px solid #a1a1d0; border-radius: 5px; padding: 25px; background-image: url(image/four.png);">
+            <div class="card" id="pdf">
+                <div class="card-body">
+
+                    <div class="display_design" style="color: red;">
+                        <p id="display_design"></p>
+                    </div>
+
+                    <div class="display_first_name_bride">
+                        <p style="text-align: center; color: #d23331; font-family: Brush Script MT, cursive; font-size: 26px; font-style: normal; font-variant: normal; font-weight: 700;"
+                            id="display_first_name_bride"></p>
+                    </div>
+
+                    <div
+                        style="margin-top: 15px; text-align: center; color: #d23331; font-family: Brush Script MT, cursive; font-size: 26px; font-style: normal; font-variant: normal; font-weight: 700;">
+                        <p id="showAnd"></p>
+                    </div>
+
+                    <div class="display_first_name_groome">
+                        <p style="margin-top: 15px; word-break: break-all; text-align: center; color: #d23331; font-family: Brush Script MT, cursive; font-size: 26px; font-style: normal; font-variant: normal; font-weight: 700;"
+                            id="display_first_name_groome"></p>
+                    </div>
+                    <div
+                        style="margin-top: 15px; text-align: center; color: #2818bd; font-family: Brush Script MT, cursive; font-size: 26px; font-style: normal; font-variant: normal; font-weight: 700;">
+                        <p id="eventName"></p>
+                    </div>
+
+                    <div class="display_message">
+                        <p style="text-align: center; word-break: break-all; font-family: Brush Script MT, cursive; font-size: 22px; font-style: normal; font-variant: normal; font-weight: 700;"
+                            id="display_message"></p>
+                    </div>
+
+                    <div class="display_date"
+                        style="text-align: center; word-break: break-all; font-family: Brush Script MT, cursive; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700;">
+                        <p id="display_date"></p>
+                    </div>
+
+                    <br>
+                    <div class="display_venu_address"
+                        style="word-break: break-all; text-align: center; font-family: Brush Script MT, cursive; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700;">
+                        <p id="display_venu_address"></p>
+                    </div>
+
+                  
+                </div>
+                <div>
+                  <input type="button" id="myPrntbtn" onclick="printDiv('right_content_id')" value="Print">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <footer style="margin-top: 20px;">
+        <div style="display: flex; height: 100px; width: 100%; background-color: #333; color: white; padding: 20px;">
+            <div style="width: 30%; text-align: center;">
+                Logo <br>
+                Contact Information
+            </div>
+            <div style="width: 40%; text-align: center;">
+                Menu List
+            </div>
+            <div style="width: 30%; text-align: center;">
+                Social Link
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
